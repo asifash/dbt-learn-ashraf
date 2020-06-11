@@ -11,3 +11,21 @@ models:
           - not_null
       - name: first_order_date
         description: NULL when a customer has not yet placed an order.
+  - name: orders
+    description: Details of all orders by customers
+    columns:
+      - name: customer_id
+        description: a customer_id in orders table must exist in customer table
+        tests:
+          - relationships:
+              to: ref('customers')
+              field: customer_id
+      - name: order_id
+        description: there cannot be a order without an order_id in the orders table
+        tests:
+          - not_null
+          - unique
+      - name: order_date
+        description: there cannot be a order without an order date in the orders table
+        tests:
+          - not_null

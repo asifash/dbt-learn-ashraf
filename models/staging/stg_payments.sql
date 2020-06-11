@@ -13,6 +13,6 @@ SELECT
 
 from 
 
-     raw.stripe.payment
+     {{ source('stripe', 'payment') }}
      
      where status = 'success'
